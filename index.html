@@ -1,0 +1,2827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beacon Valley International Academy - School Management System</title>
+    
+    <!-- Meta SEO & Icons -->
+    <meta name="description" content="Production-style School Management System for modern education institutions.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Application CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+
+    <!-- Main Application Wrapper -->
+    <div id="app-container">
+        
+        <!-- Mobile Sidebar Backdrop -->
+        <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+        <!-- ===================================================================
+             MAIN SIDEBAR NAVIGATION (14 Modules)
+             =================================================================== -->
+        <aside id="sidebar">
+            <!-- Sidebar Header / School Branding -->
+            <div class="sidebar-header">
+                <a href="#" class="brand-wrapper" onclick="App.navigateTo('dashboard'); return false;">
+                    <div class="brand-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <div class="brand-title school-name-text">Beacon Valley</div>
+                        <div class="brand-sub">Management System</div>
+                    </div>
+                </a>
+                <button type="button" id="sidebar-close-btn" class="sidebar-close-btn" aria-label="Close Sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="sidebar-nav-container">
+                <div class="nav-section-title">Core Operations</div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link active" data-page="dashboard">
+                            <i class="fas fa-th-large"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section-title">Student Administration</div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="students">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Students</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="student-attendance">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Student Attendance</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="student-leaves">
+                            <i class="fas fa-calendar-minus"></i>
+                            <span>Student Leaves</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section-title">Faculty & Staff</div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="teachers">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Teachers</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="teacher-attendance">
+                            <i class="fas fa-user-clock"></i>
+                            <span>Teacher Attendance</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="teacher-leaves">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Teacher Leaves</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="payroll">
+                            <i class="fas fa-money-check-alt"></i>
+                            <span>Teacher Payroll</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section-title">Academic Structure</div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="classes">
+                            <i class="fas fa-chalkboard"></i>
+                            <span>Classes & Sections</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="subjects">
+                            <i class="fas fa-book"></i>
+                            <span>Subjects</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="fees">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <span>Fees Management</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="academic-years">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Academic Years</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-section-title">Intelligence & Setup</div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="reports">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Reports & Analytics</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#" class="sidebar-link" data-page="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sidebar Footer Status -->
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <div class="status-indicator"></div>
+                    <span>System Online</span>
+                </div>
+                <span class="badge bg-primary" style="font-size: 10px;">v2.5 Pro</span>
+            </div>
+        </aside>
+
+        <!-- ===================================================================
+             MAIN CONTENT WRAPPER
+             =================================================================== -->
+        <div id="main-wrapper">
+            
+            <!-- Top Sticky Header -->
+            <header id="top-header">
+                <div class="header-left">
+                    <button type="button" id="sidebar-toggle-btn" class="sidebar-toggle-btn" aria-label="Toggle Navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <!-- Global Quick Search Box -->
+                    <div class="global-search-container">
+                        <i class="fas fa-search global-search-icon"></i>
+                        <input type="text" id="global-search-input" class="global-search-input" placeholder="Search students (name, ID, roll) or teachers (name, subject)..." autocomplete="off">
+                        
+                        <!-- Search Results Dropdown -->
+                        <div id="global-search-results" class="search-results-popup"></div>
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <!-- Active Session Pill -->
+                    <div class="academic-year-pill">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Session:</span>
+                        <strong class="active-academic-year-text">2025-26</strong>
+                    </div>
+
+                    <!-- Live Clock -->
+                    <div class="live-clock-badge">
+                        <i class="far fa-clock text-primary"></i>
+                        <span id="live-clock-text">--</span>
+                    </div>
+
+                    <!-- Quick Action Menu -->
+                    <div class="dropdown quick-action-dropdown">
+                        <button class="btn btn-primary dropdown-toggle shadow-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-plus-circle me-1"></i>
+                            <span class="d-none d-sm-inline">Quick Add</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0" style="border-radius: 12px; font-size: 13.5px;">
+                            <li><a class="dropdown-item py-2 quick-add-btn" href="#" data-action="add-student"><i class="fas fa-user-plus text-primary me-2"></i> New Student</a></li>
+                            <li><a class="dropdown-item py-2 quick-add-btn" href="#" data-action="add-teacher"><i class="fas fa-chalkboard-teacher text-indigo me-2"></i> New Teacher</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2 quick-add-btn" href="#" data-action="record-fee"><i class="fas fa-file-invoice-dollar text-success me-2"></i> Issue Fee Voucher</a></li>
+                            <li><a class="dropdown-item py-2 quick-add-btn" href="#" data-action="apply-student-leave"><i class="fas fa-calendar-minus text-warning me-2"></i> Student Leave</a></li>
+                            <li><a class="dropdown-item py-2 quick-add-btn" href="#" data-action="apply-teacher-leave"><i class="fas fa-user-clock text-purple me-2"></i> Faculty Leave</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- User Identity Badge -->
+                    <div class="header-user-profile">
+                        <div class="user-avatar-badge">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="user-meta-info">
+                            <div class="user-name-title">Admin Office</div>
+                            <div class="user-role-title">Principal Desk</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Viewport -->
+            <main id="page-content">
+
+                <!-- ===============================================================
+                     PAGE 1: DASHBOARD (DIRECT LANDING)
+                     =============================================================== -->
+                <section id="page-dashboard" class="page-view active">
+                    <!-- Page Header Row -->
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Executive School Dashboard</h1>
+                            <p class="page-header-subtitle">Welcome back. Real-time institutional performance and daily campus statistics.</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-secondary btn-sm" onclick="App.navigateTo('reports')">
+                                <i class="fas fa-chart-pie me-1"></i> Reports
+                            </button>
+                            <button class="btn btn-primary btn-sm shadow-sm" onclick="StudentsModule.openAddModal()">
+                                <i class="fas fa-user-plus me-1"></i> Enroll Student
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- TOP 10 STATISTICS CARDS -->
+                    <div class="stat-card-grid">
+                        <!-- 1. Total Students -->
+                        <div class="stat-card cursor-pointer" onclick="App.navigateTo('students')">
+                            <div class="stat-card-top">
+                                <span class="stat-card-label">Total Students</span>
+                                <div class="stat-card-icon-box icon-blue">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                            </div>
+                            <div class="stat-card-value" id="stat-total-students">0</div>
+                            <div class="stat-card-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>Active Enrollment</span>
+                            </div>
+                        </div>
+
+                        <!-- 2. Total Teachers -->
+                        <div class="stat-card cursor-pointer" onclick="App.navigateTo('teachers')">
+                            <div class="stat-card-top">
+                                <span class="stat-card-label">Total Teachers</span>
+                                <div class="stat-card-icon-box icon-indigo">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                            </div>
+                            <div class="stat-card-value" id="stat-total-teachers">0</div>
+                            <div class="stat-card-trend trend-neutral">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Certified Faculty</span>
+                            </div>
+                        </div>
+
+                        <!-- 3. Students Present Today -->
+                        <div class="stat-card cursor-pointer" onclick="App.navigateTo('student-attendance')">
+                            <div class="stat-card-top">
+                                <span class="stat-card-label">Students Present</span>
+                                <div class="stat-card-icon-box icon-emerald">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                            </div>
+                            <div class="stat-card-value text-success" id="stat-students-present">0</div>
+                            <div class="stat-card-trend trend-up">
+                                <i class="fas fa-clock"></i>
+                                <span>Today's Attendance</span>
+                            </div>
+                        </div>
+
+                        <!-- 4. Students Absent Today -->
+                        <div class="stat-card cursor-pointer" onclick="App.navigateTo('student-attendance')">
+                            <div class="stat-card-top">
+                                <span class="stat-card-label">Students Absent</span>
+                                <div class="stat-card-icon-box icon-rose">
+                                    <i class="fas fa-user-times"></i>
+                                </div>
+                            </div>
+                            <div class="stat-card-value text-danger" id="stat-students-absent">0</div>
+                            <div class="stat-card-trend trend-down">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Uninformed Absence</span>
+                            </div>
+                        </div>
+
+                        <!-- 5. Students on Leave -->
+                        <div class="stat-card cursor-pointer" onclick="App.navigateTo('student-leaves')">
+                            <div class="stat-card-top">
+                                <span class="stat-card-label">Students On Leave</span>
+                                <div class="stat-card-icon-box icon-amber">
+                                    <i class="fas fa-user-clock"></i>
+                                </div>
+                            </div>
+                            <div class="stat-card-value text-warning" id="stat-students-leave">0</div>
+                            <div class="stat-card-trend trend-neutral">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Approved Sanctions</span>
+                            </div>
+                        </div>
+
+                        <!-- 6. Teachers Present Today -->
+                        <div class="stat-card cursor-pointer" onclick="App.navigateTo('teacher-attendance')">
+                            <div class="stat-card-top">
+                                <span class="stat-card-label">Teachers Present</span>
+                                <div class="stat-card-icon-box icon-blue">
+                                    <i class="fas fa-chalkboard"></i>
+                                </div>
+                            </div>
+                            <div class="stat-card-value text-primary" id="stat-teachers-present">0</div>
+                            <div class="stat-card-trend trend-up">
+                                <i class="fas fa-user-shield"></i>
+                                <span>On Class Duty</span>
+                            </div>
+                        </div>
+
+                        <!-- 7. Teachers Absent Today -->
+                        <div class="stat-card cursor-pointer" onclick="App.navigateTo('teacher-attendance')">
+                            <div class="stat-card-top">
+                                <span class="stat-card-label">Teachers Absent</span>
+                                <div class="stat-card-icon-box icon-rose">
+                                    <i class="fas fa-user-slash"></i>
+                                </div>
+                            </div>
+                            <div class="stat-card-value text-danger" id="stat-teachers-absent">0</div>
+                            <div class="stat-card-trend trend-down">
+                                <i class="fas fa-bell"></i>
+                                <span>Proxy Required</span>
+                            </div>
+                        </div>
+
+                        <!-- 8. Teachers on Leave -->
+                        <div class="stat-card cursor-pointer" onclick="App.navigateTo('teacher-leaves')">
+                            <div class="stat-card-top">
+                                <span class="stat-card-label">Teachers On Leave</span>
+                                <div class="stat-card-icon-box icon-purple">
+                                    <i class="fas fa-calendar-minus"></i>
+                                </div>
+                            </div>
+                            <div class="stat-card-value" style="color: #8b5cf6;" id="stat-teachers-leave">0</div>
+                            <div class="stat-card-trend trend-neutral">
+                                <i class="fas fa-clipboard-check"></i>
+                                <span>Official Sanctions</span>
+                            </div>
+                        </div>
+
+                        <!-- 9. Pending Fees -->
+                        <div class="stat-card cursor-pointer" onclick="App.navigateTo('fees')">
+                            <div class="stat-card-top">
+                                <span class="stat-card-label">Pending Fees</span>
+                                <div class="stat-card-icon-box icon-amber">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                </div>
+                            </div>
+                            <div class="stat-card-value text-warning" id="stat-pending-fees">Rs. 0</div>
+                            <div class="stat-card-trend trend-down">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <span>Arrears to Collect</span>
+                            </div>
+                        </div>
+
+                        <!-- 10. Total Classes -->
+                        <div class="stat-card cursor-pointer" onclick="App.navigateTo('classes')">
+                            <div class="stat-card-top">
+                                <span class="stat-card-label">Total Classes</span>
+                                <div class="stat-card-icon-box icon-cyan">
+                                    <i class="fas fa-school"></i>
+                                </div>
+                            </div>
+                            <div class="stat-card-value text-dark" id="stat-total-classes">0</div>
+                            <div class="stat-card-trend trend-up">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Pre-School to Gr 10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INTERACTIVE CHARTS ROW -->
+                    <div class="row g-4 mb-4">
+                        <!-- Chart 1: Student Attendance -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="content-card h-100 mb-0">
+                                <div class="content-card-header">
+                                    <div class="card-title-wrap">
+                                        <i class="fas fa-chart-pie card-title-icon text-success"></i>
+                                        <h5 class="card-title-text">Student Attendance</h5>
+                                    </div>
+                                    <span class="badge bg-success-subtle text-success">Today</span>
+                                </div>
+                                <div class="content-card-body d-flex flex-column justify-content-center align-items-center">
+                                    <div style="height: 220px; width: 100%; position: relative;">
+                                        <canvas id="chart-student-attendance"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chart 2: Teacher Attendance -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="content-card h-100 mb-0">
+                                <div class="content-card-header">
+                                    <div class="card-title-wrap">
+                                        <i class="fas fa-chart-pie card-title-icon text-primary"></i>
+                                        <h5 class="card-title-text">Teacher Attendance</h5>
+                                    </div>
+                                    <span class="badge bg-primary-subtle text-primary">Today</span>
+                                </div>
+                                <div class="content-card-body d-flex flex-column justify-content-center align-items-center">
+                                    <div style="height: 220px; width: 100%; position: relative;">
+                                        <canvas id="chart-teacher-attendance"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chart 3: Student Growth -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="content-card h-100 mb-0">
+                                <div class="content-card-header">
+                                    <div class="card-title-wrap">
+                                        <i class="fas fa-chart-bar card-title-icon text-info"></i>
+                                        <h5 class="card-title-text">Student Enrollment</h5>
+                                    </div>
+                                    <span class="badge bg-info-subtle text-info">By Session</span>
+                                </div>
+                                <div class="content-card-body">
+                                    <div style="height: 220px; width: 100%; position: relative;">
+                                        <canvas id="chart-student-growth"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chart 4: Fee Overview -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="content-card h-100 mb-0">
+                                <div class="content-card-header">
+                                    <div class="card-title-wrap">
+                                        <i class="fas fa-chart-pie card-title-icon text-warning"></i>
+                                        <h5 class="card-title-text">Fee Overview</h5>
+                                    </div>
+                                    <span class="badge bg-warning-subtle text-warning">October</span>
+                                </div>
+                                <div class="content-card-body d-flex flex-column justify-content-center align-items-center">
+                                    <div style="height: 220px; width: 100%; position: relative;">
+                                        <canvas id="chart-fee-overview"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OPERATIONAL TABLES & RECENT ACTIVITY -->
+                    <div class="row g-4">
+                        <!-- Left: Operational Attention Tables -->
+                        <div class="col-xl-7">
+                            <!-- Absent Students Card -->
+                            <div class="content-card mb-4">
+                                <div class="content-card-header">
+                                    <div class="card-title-wrap">
+                                        <i class="fas fa-user-times card-title-icon text-danger"></i>
+                                        <h5 class="card-title-text">Students Absent Today (Needs Follow-up)</h5>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="App.navigateTo('student-attendance')">Full Register</button>
+                                </div>
+                                <div class="content-card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="sms-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Student</th>
+                                                    <th>Class & Sec</th>
+                                                    <th>Status</th>
+                                                    <th>Guardian Contact</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="today-absent-students-table">
+                                                <!-- Dynamically loaded -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Teachers On Leave Card -->
+                            <div class="content-card mb-0">
+                                <div class="content-card-header">
+                                    <div class="card-title-wrap">
+                                        <i class="fas fa-calendar-minus card-title-icon text-warning"></i>
+                                        <h5 class="card-title-text">Teachers on Approved Leave Today</h5>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="App.navigateTo('teacher-leaves')">View All Leaves</button>
+                                </div>
+                                <div class="content-card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="sms-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Teacher Name</th>
+                                                    <th>Duration</th>
+                                                    <th>Reason</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="today-teachers-leave-table">
+                                                <!-- Dynamically loaded -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Live Activity Stream -->
+                        <div class="col-xl-5">
+                            <div class="content-card h-100 mb-0">
+                                <div class="content-card-header">
+                                    <div class="card-title-wrap">
+                                        <i class="fas fa-history card-title-icon text-primary"></i>
+                                        <h5 class="card-title-text">Recent Campus Activity</h5>
+                                    </div>
+                                    <span class="badge bg-secondary-subtle text-secondary">Real-Time</span>
+                                </div>
+                                <div class="content-card-body">
+                                    <ul id="dashboard-activities-list" class="activity-feed-list">
+                                        <!-- Dynamically loaded -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 2: STUDENTS MANAGEMENT
+                     =============================================================== -->
+                <section id="page-students" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Student Management</h1>
+                            <p class="page-header-subtitle">Comprehensive student directory, enrollment records, and academic profiles.</p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span id="student-count-badge" class="badge bg-primary-subtle text-primary px-3 py-2 fw-bold" style="font-size: 13px;">0 Students</span>
+                            <button id="btn-add-student" class="btn btn-primary shadow-sm">
+                                <i class="fas fa-user-plus me-1"></i> Add Student
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter Bar -->
+                    <div class="filter-bar-card">
+                        <div class="filter-grid">
+                            <div class="filter-field">
+                                <label>Quick Search</label>
+                                <input type="text" id="filter-student-search" class="form-control" placeholder="Name, ID, Roll, Phone...">
+                            </div>
+                            <div class="filter-field">
+                                <label>Academic Class</label>
+                                <select id="filter-student-class" class="form-select">
+                                    <option value="">All Classes</option>
+                                </select>
+                            </div>
+                            <div class="filter-field">
+                                <label>Section</label>
+                                <select id="filter-student-section" class="form-select">
+                                    <option value="">All Sections</option>
+                                    <option value="A">Section A</option>
+                                    <option value="B">Section B</option>
+                                </select>
+                            </div>
+                            <div class="filter-field">
+                                <label>Academic Year</label>
+                                <select id="filter-student-year" class="form-select">
+                                    <option value="">All Sessions</option>
+                                </select>
+                            </div>
+                            <div class="filter-field">
+                                <label>Gender</label>
+                                <select id="filter-student-gender" class="form-select">
+                                    <option value="">All Genders</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="filter-field">
+                                <label>Status</label>
+                                <select id="filter-student-status" class="form-select">
+                                    <option value="">All Statuses</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="filter-field">
+                                <button type="button" id="filter-student-reset-btn" class="btn btn-outline-secondary w-100" style="height: 38px;">
+                                    <i class="fas fa-undo me-1"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Students Table Card -->
+                    <div class="content-card">
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Student ID</th>
+                                            <th>Student & Guardian</th>
+                                            <th>Class & Section</th>
+                                            <th>Roll No</th>
+                                            <th>Gender</th>
+                                            <th>Date of Birth</th>
+                                            <th>Contact Phone</th>
+                                            <th>Academic Session</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="students-table-body">
+                                        <!-- Dynamically rendered -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 3: STUDENT PROFILE VIEW (MOST IMPORTANT - SECTION 7 & 8)
+                     =============================================================== -->
+                <section id="page-student-profile" class="page-view">
+                    <!-- Top Breadcrumb & Return -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <button class="btn btn-outline-secondary btn-sm" onclick="App.navigateTo('students')">
+                            <i class="fas fa-arrow-left me-1"></i> Back to Student Directory
+                        </button>
+                        <div class="d-flex gap-2">
+                            <button id="prof-add-history-btn" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-plus me-1"></i> Add Academic Record
+                            </button>
+                            <button id="prof-edit-btn" class="btn btn-sm btn-outline-warning">
+                                <i class="fas fa-pen me-1"></i> Edit Profile
+                            </button>
+                            <button id="prof-print-btn" class="btn btn-sm btn-dark">
+                                <i class="fas fa-print me-1"></i> Print Official Profile
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- HERO BANNER (Large Photo + Core Identity) -->
+                    <div class="profile-hero-card">
+                        <div class="profile-hero-content">
+                            <!-- Large student photo -->
+                            <img id="prof-student-photo" src="" class="profile-large-photo" alt="Student Photo">
+                            
+                            <div class="profile-hero-details">
+                                <h2 id="prof-student-name" class="profile-name-header">Student Name</h2>
+                                <div class="profile-badge-row">
+                                    <span class="badge bg-light text-dark fw-bold px-3 py-2" id="prof-student-id">STD-2025-001</span>
+                                    <span id="prof-student-status" class="badge-status badge-status-active">Active</span>
+                                    <span class="badge bg-primary-subtle text-primary border border-primary px-3 py-1">Regular Enrollment</span>
+                                </div>
+                                <div class="profile-meta-pills">
+                                    <span><i class="fas fa-chalkboard text-info"></i> Class: <strong id="prof-student-class" class="text-white">Grade 9 (A)</strong></span>
+                                    <span><i class="fas fa-id-badge text-warning"></i> Roll No: <strong id="prof-student-roll" class="text-white">01</strong></span>
+                                    <span><i class="fas fa-calendar-alt text-success"></i> Admitted: <strong id="prof-student-admission-date" class="text-white">2021-08-15</strong></span>
+                                    <span><i class="fas fa-graduation-cap text-primary"></i> Session: <strong id="prof-student-year" class="text-white">2025-26</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROFILE DETAILS GRID (6 SECTIONS) -->
+                    <div class="row g-4 mb-4">
+                        <!-- 1. Personal Information -->
+                        <div class="col-lg-6">
+                            <div class="profile-detail-card h-100 mb-0">
+                                <div class="profile-card-header">
+                                    <h5><i class="fas fa-user-circle text-primary"></i> Personal Information</h5>
+                                </div>
+                                <div class="profile-info-grid">
+                                    <div>
+                                        <div class="info-item-label">Full Name</div>
+                                        <div id="prof-info-fullname" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Father's Name</div>
+                                        <div id="prof-info-father" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Mother's Name</div>
+                                        <div id="prof-info-mother" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Date of Birth</div>
+                                        <div id="prof-info-dob" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Gender</div>
+                                        <div id="prof-info-gender" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">B-Form / CNIC</div>
+                                        <div id="prof-info-bform" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Blood Group</div>
+                                        <div id="prof-info-blood" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Religion</div>
+                                        <div id="prof-info-religion" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Nationality</div>
+                                        <div id="prof-info-nationality" class="info-item-value">Pakistani</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Contact Information -->
+                        <div class="col-lg-6">
+                            <div class="profile-detail-card h-100 mb-0">
+                                <div class="profile-card-header">
+                                    <h5><i class="fas fa-address-book text-info"></i> Contact Information</h5>
+                                </div>
+                                <div class="profile-info-grid">
+                                    <div>
+                                        <div class="info-item-label">Student Phone</div>
+                                        <div id="prof-contact-std-phone" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Father Phone</div>
+                                        <div id="prof-contact-father-phone" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Mother Phone</div>
+                                        <div id="prof-contact-mother-phone" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Official Email</div>
+                                        <div id="prof-contact-email" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">City</div>
+                                        <div id="prof-contact-city" class="info-item-value">Islamabad</div>
+                                    </div>
+                                    <div style="grid-column: 1 / -1;">
+                                        <div class="info-item-label">Complete Residential Address</div>
+                                        <div id="prof-contact-address" class="info-item-value">-</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Academic Information -->
+                        <div class="col-lg-6">
+                            <div class="profile-detail-card h-100 mb-0">
+                                <div class="profile-card-header">
+                                    <h5><i class="fas fa-graduation-cap text-success"></i> Academic Information</h5>
+                                </div>
+                                <div class="profile-info-grid">
+                                    <div>
+                                        <div class="info-item-label">Current Class</div>
+                                        <div id="prof-acad-class" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Section</div>
+                                        <div id="prof-acad-section" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Roll Number</div>
+                                        <div id="prof-acad-roll" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Admission Number</div>
+                                        <div id="prof-acad-adm-no" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Admission Date</div>
+                                        <div id="prof-acad-adm-date" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Academic Session</div>
+                                        <div id="prof-acad-cur-year" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Previous School</div>
+                                        <div id="prof-acad-prev-school" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Previous Class</div>
+                                        <div id="prof-acad-prev-class" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Admission Type</div>
+                                        <div id="prof-acad-adm-type" class="info-item-value">Regular</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Attendance Summary with Progress Bar -->
+                        <div class="col-lg-6">
+                            <div class="profile-detail-card h-100 mb-0">
+                                <div class="profile-card-header">
+                                    <h5><i class="fas fa-calendar-check text-warning"></i> Attendance Summary</h5>
+                                    <span id="prof-att-pct" class="badge bg-success-subtle text-success fs-6 fw-bold">94%</span>
+                                </div>
+                                <div class="p-3">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between mb-1" style="font-size: 12px; font-weight: 700;">
+                                            <span>Session Attendance Progress</span>
+                                            <span class="text-primary">Annual Standard</span>
+                                        </div>
+                                        <div class="progress" style="height: 12px; border-radius: 6px;">
+                                            <div id="prof-att-progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 94%;">94%</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-2 text-center">
+                                        <div class="col-3">
+                                            <div class="p-2 bg-light rounded">
+                                                <div class="text-muted" style="font-size: 11px;">Total Days</div>
+                                                <div id="prof-att-total" class="fw-bold fs-6">168</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="p-2 bg-light rounded">
+                                                <div class="text-muted" style="font-size: 11px;">Present</div>
+                                                <div id="prof-att-present" class="fw-bold fs-6 text-success">158</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="p-2 bg-light rounded">
+                                                <div class="text-muted" style="font-size: 11px;">Absent</div>
+                                                <div id="prof-att-absent" class="fw-bold fs-6 text-danger">6</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="p-2 bg-light rounded">
+                                                <div class="text-muted" style="font-size: 11px;">Leave</div>
+                                                <div id="prof-att-leave" class="fw-bold fs-6 text-warning">4</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Fee Summary -->
+                        <div class="col-lg-6">
+                            <div class="profile-detail-card h-100 mb-0">
+                                <div class="profile-card-header">
+                                    <h5><i class="fas fa-file-invoice-dollar text-primary"></i> Fee Summary</h5>
+                                    <span id="prof-fee-status-badge" class="badge-status badge-status-paid">Paid</span>
+                                </div>
+                                <div class="profile-info-grid">
+                                    <div>
+                                        <div class="info-item-label">Total Annual Fees</div>
+                                        <div id="prof-fee-total" class="info-item-value text-dark">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Amount Paid</div>
+                                        <div id="prof-fee-paid" class="info-item-value text-success">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Pending Arrears</div>
+                                        <div id="prof-fee-pending" class="info-item-value text-danger">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Last Payment Date</div>
+                                        <div id="prof-fee-last-date" class="info-item-value">-</div>
+                                    </div>
+                                    <div>
+                                        <div class="info-item-label">Next Due Date</div>
+                                        <div id="prof-fee-due-date" class="info-item-value">-</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6. Leave History -->
+                        <div class="col-lg-6">
+                            <div class="profile-detail-card h-100 mb-0">
+                                <div class="profile-card-header">
+                                    <h5><i class="fas fa-bed text-warning"></i> Leave Applications History</h5>
+                                </div>
+                                <div class="content-card-body p-0">
+                                    <div class="table-responsive" style="max-height: 200px;">
+                                        <table class="sms-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Applied</th>
+                                                    <th>Period</th>
+                                                    <th>Days</th>
+                                                    <th>Reason</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="prof-leave-history-table">
+                                                <!-- Dynamically loaded -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===========================================================
+                         SECTION 8: STUDENT COMPLETE SCHOOL HISTORY (VERY IMPORTANT)
+                         =========================================================== -->
+                    <div class="content-card mb-4">
+                        <div class="content-card-header">
+                            <div class="card-title-wrap">
+                                <i class="fas fa-history card-title-icon text-primary"></i>
+                                <div>
+                                    <h5 class="card-title-text">Complete Academic History (All Sessions)</h5>
+                                    <div class="text-muted" style="font-size: 12px;">Maintains the student's complete academic track record for every year in the school.</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-primary shadow-sm" onclick="StudentsModule.openAddAcademicHistoryModal(StudentsModule.currentStudentId || 'STD-2025-001')">
+                                <i class="fas fa-plus me-1"></i> Add Academic Record
+                            </button>
+                        </div>
+                        <div class="content-card-body">
+                            <!-- Comparative Academic Table -->
+                            <div class="table-responsive mb-4">
+                                <table class="sms-table border rounded">
+                                    <thead>
+                                        <tr>
+                                            <th>Academic Year</th>
+                                            <th>Class</th>
+                                            <th>Section</th>
+                                            <th>Roll No</th>
+                                            <th>Attendance</th>
+                                            <th>Result</th>
+                                            <th>Promotion Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="prof-academic-history-table">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Detailed Yearly Timeline / Cards -->
+                            <h6 class="fw-bold text-dark mb-3">Year-by-Year Dossier Breakdown</h6>
+                            <div id="prof-academic-history-cards">
+                                <!-- Dynamically loaded -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 4: STUDENT ATTENDANCE MODULE
+                     =============================================================== -->
+                <section id="page-student-attendance" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Student Daily Attendance</h1>
+                            <p class="page-header-subtitle">Record and audit daily attendance rosters for each academic class and section.</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button id="att-student-save-btn" class="btn btn-success shadow-sm">
+                                <i class="fas fa-save me-1"></i> Save Attendance
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Selection & Controls Bar -->
+                    <div class="filter-bar-card">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-3 col-sm-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">SELECT DATE</label>
+                                <input type="date" id="att-student-date" class="form-control" value="2026-10-16">
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">SELECT CLASS</label>
+                                <select id="att-student-class" class="form-select"></select>
+                            </div>
+                            <div class="col-md-2 col-sm-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">SECTION</label>
+                                <select id="att-student-section" class="form-select">
+                                    <option value="A">Section A</option>
+                                    <option value="B">Section B</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 col-sm-6 d-flex gap-2">
+                                <button type="button" id="att-student-load-btn" class="btn btn-primary flex-grow-1" style="height: 38px;">
+                                    <i class="fas fa-sync-alt me-1"></i> Load Sheet
+                                </button>
+                                <button type="button" id="att-student-mark-present-all" class="btn btn-outline-success" style="height: 38px;" title="Mark All Present">
+                                    <i class="fas fa-check-double me-1"></i> All P
+                                </button>
+                                <button type="button" id="att-student-mark-absent-all" class="btn btn-outline-danger" style="height: 38px;" title="Mark All Absent">
+                                    <i class="fas fa-times-circle me-1"></i> All A
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Banner -->
+                    <div class="stat-card-grid mb-3" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+                        <div class="stat-card p-3">
+                            <span class="stat-card-label">Total Roster</span>
+                            <div class="stat-card-value fs-4" id="att-std-stat-total">0</div>
+                        </div>
+                        <div class="stat-card p-3">
+                            <span class="stat-card-label text-success">Present</span>
+                            <div class="stat-card-value fs-4 text-success" id="att-std-stat-present">0</div>
+                        </div>
+                        <div class="stat-card p-3">
+                            <span class="stat-card-label text-danger">Absent</span>
+                            <div class="stat-card-value fs-4 text-danger" id="att-std-stat-absent">0</div>
+                        </div>
+                        <div class="stat-card p-3">
+                            <span class="stat-card-label text-warning">Leave</span>
+                            <div class="stat-card-value fs-4 text-warning" id="att-std-stat-leave">0</div>
+                        </div>
+                        <div class="stat-card p-3">
+                            <span class="stat-card-label text-primary">Rate</span>
+                            <div class="stat-card-value fs-4 text-primary" id="att-std-stat-pct">0%</div>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Table -->
+                    <div class="content-card">
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Roll No</th>
+                                            <th>Student ID</th>
+                                            <th>Student Name</th>
+                                            <th>Attendance Status (P / A / L)</th>
+                                            <th>Remarks / Reason</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="student-attendance-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 5: STUDENT LEAVES
+                     =============================================================== -->
+                <section id="page-student-leaves" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Student Leave Applications</h1>
+                            <p class="page-header-subtitle">Manage, approve, and track student leave requests.</p>
+                        </div>
+                        <button id="btn-add-student-leave" class="btn btn-primary shadow-sm">
+                            <i class="fas fa-plus me-1"></i> Submit Leave Request
+                        </button>
+                    </div>
+
+                    <!-- Leave Metrics -->
+                    <div class="stat-card-grid mb-3" style="grid-template-columns: repeat(4, 1fr);">
+                        <div class="stat-card p-3">
+                            <span class="stat-card-label">Total Requests</span>
+                            <div class="stat-card-value fs-4" id="stat-std-leave-total">0</div>
+                        </div>
+                        <div class="stat-card p-3">
+                            <span class="stat-card-label text-warning">Pending Review</span>
+                            <div class="stat-card-value fs-4 text-warning" id="stat-std-leave-pending">0</div>
+                        </div>
+                        <div class="stat-card p-3">
+                            <span class="stat-card-label text-success">Approved</span>
+                            <div class="stat-card-value fs-4 text-success" id="stat-std-leave-approved">0</div>
+                        </div>
+                        <div class="stat-card p-3">
+                            <span class="stat-card-label text-danger">Rejected</span>
+                            <div class="stat-card-value fs-4 text-danger" id="stat-std-leave-rejected">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="filter-bar-card">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" id="filter-student-leave-search" class="form-control" placeholder="Search by student name, class, reason...">
+                            </div>
+                            <div class="col-md-3">
+                                <select id="filter-student-leave-status" class="form-select">
+                                    <option value="">All Statuses</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="content-card">
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Leave Ref</th>
+                                            <th>Student</th>
+                                            <th>Class & Sec</th>
+                                            <th>Leave Duration</th>
+                                            <th>Days</th>
+                                            <th>Reason</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="student-leaves-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 6: TEACHER MANAGEMENT (NO PHOTOS STRICTLY)
+                     =============================================================== -->
+                <section id="page-teachers" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Teaching Faculty Management</h1>
+                            <p class="page-header-subtitle">Certified teachers, assigned departments, compensation packages, and faculty dossiers.</p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span id="teacher-count-badge" class="badge bg-primary-subtle text-primary px-3 py-2 fw-bold" style="font-size: 13px;">0 Teachers</span>
+                            <button id="btn-add-teacher" class="btn btn-primary shadow-sm">
+                                <i class="fas fa-user-plus me-1"></i> Add Teacher
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="filter-bar-card">
+                        <div class="filter-grid">
+                            <div class="filter-field">
+                                <label>Search Faculty</label>
+                                <input type="text" id="filter-teacher-search" class="form-control" placeholder="Name, ID, Subject, Phone...">
+                            </div>
+                            <div class="filter-field">
+                                <label>Subject / Department</label>
+                                <select id="filter-teacher-subject" class="form-select">
+                                    <option value="">All Subjects</option>
+                                </select>
+                            </div>
+                            <div class="filter-field">
+                                <label>Employment Status</label>
+                                <select id="filter-teacher-status" class="form-select">
+                                    <option value="">All Statuses</option>
+                                    <option value="Active">Active</option>
+                                    <option value="On Leave">On Leave</option>
+                                </select>
+                            </div>
+                            <div class="filter-field">
+                                <label>Gender</label>
+                                <select id="filter-teacher-gender" class="form-select">
+                                    <option value="">All Genders</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="filter-field">
+                                <button type="button" id="filter-teacher-reset-btn" class="btn btn-outline-secondary w-100" style="height: 38px;">
+                                    <i class="fas fa-undo me-1"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teachers Table -->
+                    <div class="content-card">
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Teacher ID</th>
+                                            <th>Full Name & Guardian</th>
+                                            <th>Gender</th>
+                                            <th>Qualification</th>
+                                            <th>Subject</th>
+                                            <th>Class Assigned</th>
+                                            <th>Phone</th>
+                                            <th>Basic Salary</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="teachers-table-body">
+                                        <!-- Dynamically loaded (Strictly NO teacher photos) -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 7: TEACHER PROFILE VIEW (NO PHOTOS STRICTLY)
+                     =============================================================== -->
+                <section id="page-teacher-profile" class="page-view">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <button class="btn btn-outline-secondary btn-sm" onclick="App.navigateTo('teachers')">
+                            <i class="fas fa-arrow-left me-1"></i> Back to Faculty List
+                        </button>
+                        <div class="d-flex gap-2">
+                            <button id="prof-tch-edit-btn" class="btn btn-sm btn-outline-warning">
+                                <i class="fas fa-pen me-1"></i> Edit Faculty
+                            </button>
+                            <button id="prof-tch-print-btn" class="btn btn-sm btn-dark">
+                                <i class="fas fa-print me-1"></i> Print Faculty Dossier
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Teacher Hero Banner (No photo - Initials badge only) -->
+                    <div class="profile-hero-card">
+                        <div class="profile-hero-content">
+                            <div class="profile-teacher-hero-icon" id="prof-tch-initials">TM</div>
+                            <div class="profile-hero-details">
+                                <h2 id="prof-tch-name" class="profile-name-header">Tariq Mehmood</h2>
+                                <div class="profile-badge-row">
+                                    <span class="badge bg-light text-dark fw-bold px-3 py-2" id="prof-tch-id">TCH-001</span>
+                                    <span id="prof-tch-status" class="badge-status badge-status-active">Active</span>
+                                    <span class="badge bg-info-subtle text-info border px-3 py-1">Permanent Faculty</span>
+                                </div>
+                                <div class="profile-meta-pills">
+                                    <span><i class="fas fa-book text-warning"></i> Department: <strong id="prof-tch-subject" class="text-white">Mathematics</strong></span>
+                                    <span><i class="fas fa-chalkboard text-info"></i> Class: <strong id="prof-tch-class" class="text-white">Grade 9 (A)</strong></span>
+                                    <span><i class="fas fa-calendar-check text-success"></i> Joining: <strong id="prof-tch-joining" class="text-white">2018-09-01</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Cards Grid -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-lg-6">
+                            <div class="profile-detail-card h-100 mb-0">
+                                <div class="profile-card-header">
+                                    <h5><i class="fas fa-user-circle text-primary"></i> Personal Details</h5>
+                                </div>
+                                <div class="profile-info-grid">
+                                    <div><div class="info-item-label">Full Name</div><div id="prof-tch-info-fullname" class="info-item-value">-</div></div>
+                                    <div><div class="info-item-label">Father / Husband</div><div id="prof-tch-info-father" class="info-item-value">-</div></div>
+                                    <div><div class="info-item-label">Date of Birth</div><div id="prof-tch-info-dob" class="info-item-value">-</div></div>
+                                    <div><div class="info-item-label">Gender</div><div id="prof-tch-info-gender" class="info-item-value">-</div></div>
+                                    <div><div class="info-item-label">CNIC</div><div id="prof-tch-info-cnic" class="info-item-value">-</div></div>
+                                    <div><div class="info-item-label">Teaching Experience</div><div id="prof-tch-info-exp" class="info-item-value">-</div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="profile-detail-card h-100 mb-0">
+                                <div class="profile-card-header">
+                                    <h5><i class="fas fa-briefcase text-info"></i> Academic & Employment</h5>
+                                </div>
+                                <div class="profile-info-grid">
+                                    <div><div class="info-item-label">Qualification</div><div id="prof-tch-info-qual" class="info-item-value text-primary">-</div></div>
+                                    <div><div class="info-item-label">Primary Subject</div><div id="prof-tch-info-sub" class="info-item-value">-</div></div>
+                                    <div><div class="info-item-label">Assigned Class</div><div id="prof-tch-info-assigned-class" class="info-item-value">-</div></div>
+                                    <div><div class="info-item-label">Joining Date</div><div id="prof-tch-info-joining-date" class="info-item-value">-</div></div>
+                                    <div><div class="info-item-label">Employment Status</div><div id="prof-tch-info-emp-status" class="info-item-value text-success">-</div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="profile-detail-card h-100 mb-0">
+                                <div class="profile-card-header">
+                                    <h5><i class="fas fa-phone-alt text-success"></i> Contact Details</h5>
+                                </div>
+                                <div class="profile-info-grid">
+                                    <div><div class="info-item-label">Mobile Phone</div><div id="prof-tch-info-phone" class="info-item-value">-</div></div>
+                                    <div><div class="info-item-label">Email Address</div><div id="prof-tch-info-email" class="info-item-value">-</div></div>
+                                    <div style="grid-column: 1 / -1;"><div class="info-item-label">Residential Address</div><div id="prof-tch-info-address" class="info-item-value">-</div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="profile-detail-card h-100 mb-0">
+                                <div class="profile-card-header">
+                                    <h5><i class="fas fa-money-bill-wave text-warning"></i> Compensation Package</h5>
+                                </div>
+                                <div class="profile-info-grid">
+                                    <div><div class="info-item-label">Basic Salary</div><div id="prof-tch-info-salary" class="info-item-value text-dark">-</div></div>
+                                    <div><div class="info-item-label">Fixed Allowances</div><div id="prof-tch-info-allowances" class="info-item-value text-info">-</div></div>
+                                    <div><div class="info-item-label">Gross Monthly Package</div><div id="prof-tch-info-gross" class="info-item-value text-success">-</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teacher Payroll Records Card -->
+                    <div class="content-card mb-4">
+                        <div class="content-card-header">
+                            <h5 class="card-title-text"><i class="fas fa-file-invoice text-primary me-2"></i> Salary Payment History</h5>
+                        </div>
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Payment Month</th>
+                                            <th>Basic</th>
+                                            <th>Allowances</th>
+                                            <th>Deductions</th>
+                                            <th>Net Salary</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="prof-tch-payroll-table">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teacher Leave History Card -->
+                    <div class="content-card mb-0">
+                        <div class="content-card-header">
+                            <h5 class="card-title-text"><i class="fas fa-calendar-minus text-warning me-2"></i> Faculty Leave Log</h5>
+                        </div>
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Applied Date</th>
+                                            <th>Leave Period</th>
+                                            <th>Days</th>
+                                            <th>Reason</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="prof-tch-leave-table">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 8: TEACHER ATTENDANCE
+                     =============================================================== -->
+                <section id="page-teacher-attendance" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Teacher Attendance Register</h1>
+                            <p class="page-header-subtitle">Faculty check-in, check-out tracking, and punctuality audit.</p>
+                        </div>
+                        <button id="att-teacher-save-btn" class="btn btn-success shadow-sm">
+                            <i class="fas fa-save me-1"></i> Save Teacher Register
+                        </button>
+                    </div>
+
+                    <div class="filter-bar-card">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">SELECT DATE</label>
+                                <input type="date" id="att-teacher-date" class="form-control" value="2026-10-16">
+                            </div>
+                            <div class="col-md-4 d-flex gap-2">
+                                <button type="button" id="att-teacher-load-btn" class="btn btn-primary flex-grow-1" style="height: 38px;">
+                                    <i class="fas fa-sync-alt me-1"></i> Load Faculty
+                                </button>
+                                <button type="button" id="att-teacher-mark-present-all" class="btn btn-outline-success" style="height: 38px;">
+                                    <i class="fas fa-check-double me-1"></i> All Present
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teacher Att Stats -->
+                    <div class="stat-card-grid mb-3" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+                        <div class="stat-card p-3"><span class="stat-card-label">Total Staff</span><div class="stat-card-value fs-4" id="att-tch-stat-total">0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-success">Present</span><div class="stat-card-value fs-4 text-success" id="att-tch-stat-present">0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-danger">Absent</span><div class="stat-card-value fs-4 text-danger" id="att-tch-stat-absent">0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-warning">Leave</span><div class="stat-card-value fs-4 text-warning" id="att-tch-stat-leave">0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-danger">Late</span><div class="stat-card-value fs-4 text-danger" id="att-tch-stat-late">0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-primary">Attendance</span><div class="stat-card-value fs-4 text-primary" id="att-tch-stat-pct">0%</div></div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Staff ID</th>
+                                            <th>Faculty Name</th>
+                                            <th>Check-In Time</th>
+                                            <th>Check-Out Time</th>
+                                            <th>Attendance Status</th>
+                                            <th>Punctuality</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="teacher-attendance-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 9: TEACHER LEAVES
+                     =============================================================== -->
+                <section id="page-teacher-leaves" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Teacher Leave Management</h1>
+                            <p class="page-header-subtitle">Faculty leave requests, sanction approvals, and historical logs.</p>
+                        </div>
+                        <button id="btn-add-teacher-leave" class="btn btn-primary shadow-sm">
+                            <i class="fas fa-plus me-1"></i> Apply Faculty Leave
+                        </button>
+                    </div>
+
+                    <div class="stat-card-grid mb-3" style="grid-template-columns: repeat(4, 1fr);">
+                        <div class="stat-card p-3"><span class="stat-card-label">Total Requests</span><div class="stat-card-value fs-4" id="stat-tch-leave-total">0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-warning">Pending Review</span><div class="stat-card-value fs-4 text-warning" id="stat-tch-leave-pending">0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-success">Approved</span><div class="stat-card-value fs-4 text-success" id="stat-tch-leave-approved">0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-danger">Rejected</span><div class="stat-card-value fs-4 text-danger" id="stat-tch-leave-rejected">0</div></div>
+                    </div>
+
+                    <div class="filter-bar-card">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" id="filter-teacher-leave-search" class="form-control" placeholder="Search by faculty name or reason...">
+                            </div>
+                            <div class="col-md-3">
+                                <select id="filter-teacher-leave-status" class="form-select">
+                                    <option value="">All Statuses</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Leave Ref</th>
+                                            <th>Faculty Member</th>
+                                            <th>Duration</th>
+                                            <th>Days</th>
+                                            <th>Reason</th>
+                                            <th>Approved By</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="teacher-leaves-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 10: TEACHER PAYROLL / SALARY
+                     =============================================================== -->
+                <section id="page-payroll" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Teacher Payroll & Salaries</h1>
+                            <p class="page-header-subtitle">Monthly payroll formulation: Net = Basic + Allowances + Bonus - Deductions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Payroll Summary Stats -->
+                    <div class="stat-card-grid mb-3">
+                        <div class="stat-card p-3"><span class="stat-card-label">Total Payroll</span><div class="stat-card-value fs-4 text-primary" id="stat-pay-total">Rs. 0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-success">Disbursed Paid</span><div class="stat-card-value fs-4 text-success" id="stat-pay-paid">Rs. 0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-warning">Pending Disbursement</span><div class="stat-card-value fs-4 text-warning" id="stat-pay-pending">Rs. 0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-danger">Total Deductions</span><div class="stat-card-value fs-4 text-danger" id="stat-pay-deductions">Rs. 0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-info">Total Bonuses</span><div class="stat-card-value fs-4 text-info" id="stat-pay-bonuses">Rs. 0</div></div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="filter-bar-card">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 11.5px;">SEARCH FACULTY</label>
+                                <input type="text" id="filter-payroll-search" class="form-control" placeholder="Search teacher name or ID...">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 11.5px;">PAYMENT MONTH</label>
+                                <select id="filter-payroll-month" class="form-select">
+                                    <option value="">All Months</option>
+                                    <option value="October 2026" selected>October 2026</option>
+                                    <option value="September 2026">September 2026</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 11.5px;">DISBURSEMENT STATUS</label>
+                                <select id="filter-payroll-status" class="form-select">
+                                    <option value="">All Statuses</option>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Staff ID</th>
+                                            <th>Faculty Member</th>
+                                            <th>Basic</th>
+                                            <th>Allowances</th>
+                                            <th>Bonus</th>
+                                            <th>Deductions</th>
+                                            <th>Net Salary</th>
+                                            <th>Month</th>
+                                            <th>Payment Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="payroll-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 11: CLASSES & SECTIONS
+                     =============================================================== -->
+                <section id="page-classes" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Academic Classes & Sections</h1>
+                            <p class="page-header-subtitle">Standardized school tiers from Play Group & Nursery through Grade 10.</p>
+                        </div>
+                        <button id="btn-add-class" class="btn btn-primary shadow-sm">
+                            <i class="fas fa-plus me-1"></i> Add Class
+                        </button>
+                    </div>
+
+                    <div class="row" id="classes-grid-container">
+                        <!-- Dynamically populated cards -->
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 12: SUBJECTS MODULE
+                     =============================================================== -->
+                <section id="page-subjects" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Curriculum Subjects</h1>
+                            <p class="page-header-subtitle">Manage subject courses and teacher departmental allocations.</p>
+                        </div>
+                        <button id="btn-add-subject" class="btn btn-primary shadow-sm">
+                            <i class="fas fa-plus me-1"></i> Add Subject
+                        </button>
+                    </div>
+
+                    <div class="filter-bar-card">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" id="filter-subject-search" class="form-control" placeholder="Search subject name or course code...">
+                            </div>
+                            <div class="col-md-3">
+                                <select id="filter-subject-class" class="form-select">
+                                    <option value="">All Assigned Classes</option>
+                                    <option value="CLS-9">Grade 9</option>
+                                    <option value="CLS-7">Grade 7</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject ID</th>
+                                            <th>Course Code</th>
+                                            <th>Subject Title</th>
+                                            <th>Class Level</th>
+                                            <th>Assigned Faculty</th>
+                                            <th>Course Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="subjects-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 13: FEES MANAGEMENT
+                     =============================================================== -->
+                <section id="page-fees" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Student Fees & Accounts</h1>
+                            <p class="page-header-subtitle">Tuition, lab fees, voucher billing, and official 3-copy bank receipts.</p>
+                        </div>
+                        <button id="btn-add-fee" class="btn btn-primary shadow-sm">
+                            <i class="fas fa-plus me-1"></i> Generate Fee Voucher
+                        </button>
+                    </div>
+
+                    <!-- Fee Metrics -->
+                    <div class="stat-card-grid mb-3">
+                        <div class="stat-card p-3"><span class="stat-card-label">Total Collectible</span><div class="stat-card-value fs-4 text-primary" id="stat-fee-total">Rs. 0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-success">Total Collected</span><div class="stat-card-value fs-4 text-success" id="stat-fee-collected">Rs. 0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-danger">Pending Arrears</span><div class="stat-card-value fs-4 text-danger" id="stat-fee-pending">Rs. 0</div></div>
+                        <div class="stat-card p-3"><span class="stat-card-label text-warning">Defaulters</span><div class="stat-card-value fs-4 text-warning" id="stat-fee-defaulters">0</div></div>
+                    </div>
+
+                    <div class="filter-bar-card">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <input type="text" id="filter-fee-search" class="form-control" placeholder="Search student name or voucher ID...">
+                            </div>
+                            <div class="col-md-3">
+                                <select id="filter-fee-month" class="form-select">
+                                    <option value="">All Fee Months</option>
+                                    <option value="October 2026" selected>October 2026</option>
+                                    <option value="September 2026">September 2026</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select id="filter-fee-status" class="form-select">
+                                    <option value="">All Statuses</option>
+                                    <option value="Paid">Fully Paid</option>
+                                    <option value="Partial">Partial</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Voucher ID</th>
+                                            <th>Student Name</th>
+                                            <th>Class & Sec</th>
+                                            <th>Fee Month</th>
+                                            <th>Total Fee</th>
+                                            <th>Paid</th>
+                                            <th>Pending</th>
+                                            <th>Due Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="fees-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 14: ACADEMIC YEARS
+                     =============================================================== -->
+                <section id="page-academic-years" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Academic Years & Sessions</h1>
+                            <p class="page-header-subtitle">Configure academic sessions and activate global system terms.</p>
+                        </div>
+                        <button id="btn-add-year" class="btn btn-primary shadow-sm">
+                            <i class="fas fa-plus me-1"></i> Add Academic Session
+                        </button>
+                    </div>
+
+                    <div class="content-card">
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Session Ref</th>
+                                            <th>Academic Year</th>
+                                            <th>Term Start</th>
+                                            <th>Term End</th>
+                                            <th>Status</th>
+                                            <th>Session Control</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="academic-years-table-body">
+                                        <!-- Dynamically loaded -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 15: REPORTS MODULE
+                     =============================================================== -->
+                <section id="page-reports" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">Institutional Reports & Audit Center</h1>
+                            <p class="page-header-subtitle">Exportable registers, attendance summaries, financial collections, and student progress logs.</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button id="report-export-csv-btn" class="btn btn-outline-success">
+                                <i class="fas fa-file-csv me-1"></i> Export to CSV
+                            </button>
+                            <button id="report-print-btn" class="btn btn-dark shadow-sm">
+                                <i class="fas fa-print me-1"></i> Print Formal Report
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Category Switcher Buttons -->
+                    <div class="content-card mb-4">
+                        <div class="content-card-body p-3">
+                            <div class="d-flex flex-wrap gap-2">
+                                <button type="button" class="btn btn-sm btn-primary report-type-btn" data-type="student-list">Student List</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary report-type-btn" data-type="student-attendance">Student Attendance</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary report-type-btn" data-type="student-leaves">Student Leaves</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary report-type-btn" data-type="student-academic">Academic Progress</button>
+                                <div class="vr my-1 mx-2"></div>
+                                <button type="button" class="btn btn-sm btn-outline-primary report-type-btn" data-type="teacher-list">Faculty List</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary report-type-btn" data-type="teacher-attendance">Teacher Attendance</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary report-type-btn" data-type="teacher-payroll">Monthly Payroll</button>
+                                <div class="vr my-1 mx-2"></div>
+                                <button type="button" class="btn btn-sm btn-outline-primary report-type-btn" data-type="fee-collection">Fee Collections</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary report-type-btn" data-type="pending-fees">Defaulters List</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Table Viewer -->
+                    <div class="content-card">
+                        <div class="content-card-header">
+                            <h5 id="report-view-title" class="card-title-text">Report Title</h5>
+                            <span id="report-record-count" class="badge bg-secondary">0 Records</span>
+                        </div>
+                        <div class="content-card-body p-0">
+                            <div class="table-responsive">
+                                <table class="sms-table">
+                                    <thead id="report-table-head"></thead>
+                                    <tbody id="report-table-body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===============================================================
+                     PAGE 16: SETTINGS
+                     =============================================================== -->
+                <section id="page-settings" class="page-view">
+                    <div class="page-header-row">
+                        <div>
+                            <h1 class="page-header-title">System & Institutional Settings</h1>
+                            <p class="page-header-subtitle">Configure school details, official letterheads, currency, and database backups.</p>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <div class="content-card mb-0">
+                                <div class="content-card-header">
+                                    <h5 class="card-title-text"><i class="fas fa-school text-primary me-2"></i> Official School Profile</h5>
+                                </div>
+                                <div class="content-card-body">
+                                    <form id="settings-form">
+                                        <div class="row g-3 mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-bold" style="font-size: 12px;">SCHOOL NAME</label>
+                                                <input type="text" id="set-input-school-name" class="form-control" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-bold" style="font-size: 12px;">CAMPUS / BRANCH</label>
+                                                <input type="text" id="set-input-campus" class="form-control" required>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label fw-bold" style="font-size: 12px;">PHONE NUMBER</label>
+                                                <input type="text" id="set-input-phone" class="form-control" required>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label fw-bold" style="font-size: 12px;">EMAIL ADDRESS</label>
+                                                <input type="email" id="set-input-email" class="form-control" required>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label fw-bold" style="font-size: 12px;">WEBSITE</label>
+                                                <input type="text" id="set-input-website" class="form-control">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-bold" style="font-size: 12px;">BOARD AFFILIATION / REG #</label>
+                                                <input type="text" id="set-input-affiliation" class="form-control">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-bold" style="font-size: 12px;">HEAD / PRINCIPAL NAME</label>
+                                                <input type="text" id="set-input-principal" class="form-control">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label fw-bold" style="font-size: 12px;">ACTIVE ACADEMIC SESSION</label>
+                                                <select id="set-input-active-year" class="form-select"></select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label fw-bold" style="font-size: 12px;">CURRENCY SYMBOL</label>
+                                                <input type="text" id="set-input-currency" class="form-control" value="Rs.">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label fw-bold" style="font-size: 12px;">DATE FORMAT</label>
+                                                <select id="set-input-date-format" class="form-select">
+                                                    <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                                                    <option value="DD-MM-YYYY">DD-MM-YYYY</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="text-end">
+                                            <button type="submit" class="btn btn-primary px-4 shadow-sm">
+                                                <i class="fas fa-save me-1"></i> Save School Settings
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Database Management & Backup -->
+                        <div class="col-lg-4">
+                            <div class="content-card mb-4">
+                                <div class="content-card-header">
+                                    <h5 class="card-title-text"><i class="fas fa-database text-info me-2"></i> Data Management</h5>
+                                </div>
+                                <div class="content-card-body">
+                                    <p class="text-muted" style="font-size: 13px;">Export complete data snapshots or restore default Pakistani school sample database.</p>
+                                    <div class="d-grid gap-2">
+                                        <button id="btn-export-backup" class="btn btn-outline-primary">
+                                            <i class="fas fa-download me-1"></i> Export Data (JSON)
+                                        </button>
+                                        <button id="btn-reset-defaults" class="btn btn-outline-danger">
+                                            <i class="fas fa-undo me-1"></i> Reset to Sample Data
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content-card mb-0">
+                                <div class="content-card-header">
+                                    <h5 class="card-title-text"><i class="fas fa-server text-success me-2"></i> System Architecture</h5>
+                                </div>
+                                <div class="content-card-body" style="font-size: 13px; color: #475569;">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Data Storage:</span>
+                                        <strong>LocalStorage + API Layer</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Backend Ready:</span>
+                                        <strong class="text-success">Node / REST Compatible</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>UI Engine:</span>
+                                        <strong>Bootstrap 5 + Chart.js</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span>Print Engine:</span>
+                                        <strong>Standard A4 Official Layout</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         PRINT RENDERING CONTAINER (@media print targets this exclusively)
+         ======================================================================= -->
+    <div id="print-document-content" class="d-none"></div>
+
+    <!-- =======================================================================
+         TOAST NOTIFICATION CONTAINER
+         ======================================================================= -->
+    <div id="toast-container" class="sms-toast-container"></div>
+
+    <!-- =======================================================================
+         MODAL 1: ADD / EDIT STUDENT
+         ======================================================================= -->
+    <div class="modal fade" id="student-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="student-modal-title">Add New Student</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="student-form">
+                        <input type="hidden" id="student-form-id">
+
+                        <!-- SECTION 1: PERSONAL INFORMATION -->
+                        <div class="form-section-divider">
+                            <span><i class="fas fa-user-circle me-1"></i> Personal Information</span>
+                            <hr>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">STUDENT ID</label>
+                                <input type="text" id="std-input-id" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">FULL NAME *</label>
+                                <input type="text" id="std-input-fullname" class="form-control" placeholder="e.g. Ahmed Khan" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">FATHER'S NAME *</label>
+                                <input type="text" id="std-input-father" class="form-control" placeholder="e.g. Jahangir Khan" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">MOTHER'S NAME</label>
+                                <input type="text" id="std-input-mother" class="form-control" placeholder="Mother name">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">GENDER</label>
+                                <select id="std-input-gender" class="form-select">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">DATE OF BIRTH</label>
+                                <input type="date" id="std-input-dob" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">B-FORM / CNIC</label>
+                                <input type="text" id="std-input-bform" class="form-control" placeholder="e.g. 61101-1234567-1">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">STUDENT PHOTO (URL)</label>
+                                <input type="text" id="std-input-photo" class="form-control" placeholder="https://images.unsplash.com/...">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">BLOOD GROUP</label>
+                                <select id="std-input-blood" class="form-select">
+                                    <option value="A+">A+</option>
+                                    <option value="B+">B+</option>
+                                    <option value="O+">O+</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O-">O-</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">RELIGION</label>
+                                <input type="text" id="std-input-religion" class="form-control" value="Islam">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">NATIONALITY</label>
+                                <input type="text" id="std-input-nationality" class="form-control" value="Pakistani">
+                            </div>
+                        </div>
+
+                        <!-- SECTION 2: CONTACT INFORMATION -->
+                        <div class="form-section-divider">
+                            <span><i class="fas fa-phone-alt me-1"></i> Contact Information</span>
+                            <hr>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">STUDENT PHONE</label>
+                                <input type="text" id="std-input-phone" class="form-control" placeholder="+92 300 0000000">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">FATHER'S PHONE</label>
+                                <input type="text" id="std-input-father-phone" class="form-control" placeholder="+92 300 0000000">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">MOTHER'S PHONE</label>
+                                <input type="text" id="std-input-mother-phone" class="form-control" placeholder="+92 300 0000000">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">EMAIL ADDRESS</label>
+                                <input type="email" id="std-input-email" class="form-control" placeholder="parent@gmail.com">
+                            </div>
+                            <div class="col-md-8">
+                                <label class="form-label fw-bold" style="font-size: 12px;">COMPLETE RESIDENTIAL ADDRESS</label>
+                                <input type="text" id="std-input-address" class="form-control" placeholder="House #, Street #, Sector...">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">CITY</label>
+                                <input type="text" id="std-input-city" class="form-control" value="Islamabad">
+                            </div>
+                        </div>
+
+                        <!-- SECTION 3: ACADEMIC INFORMATION -->
+                        <div class="form-section-divider">
+                            <span><i class="fas fa-graduation-cap me-1"></i> Academic Information</span>
+                            <hr>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ADMISSION NUMBER</label>
+                                <input type="text" id="std-input-admission-no" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ADMISSION DATE</label>
+                                <input type="date" id="std-input-admission-date" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">CLASS *</label>
+                                <select id="std-input-class" class="form-select" required></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">SECTION</label>
+                                <select id="std-input-section" class="form-select">
+                                    <option value="A">Section A</option>
+                                    <option value="B">Section B</option>
+                                    <option value="C">Section C</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ROLL NUMBER</label>
+                                <input type="text" id="std-input-roll" class="form-control" placeholder="01">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ACADEMIC SESSION</label>
+                                <input type="text" id="std-input-year" class="form-control" value="2025-26">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">PREVIOUS SCHOOL</label>
+                                <input type="text" id="std-input-prev-school" class="form-control" placeholder="Previous school name">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">PREVIOUS CLASS</label>
+                                <input type="text" id="std-input-prev-class" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ADMISSION TYPE</label>
+                                <select id="std-input-adm-type" class="form-select">
+                                    <option value="Regular">Regular</option>
+                                    <option value="Transfer">Transfer</option>
+                                    <option value="New">New</option>
+                                    <option value="Scholarship">Scholarship</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ENROLLMENT STATUS</label>
+                                <select id="std-input-status" class="form-select">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- SECTION 4: EMERGENCY INFORMATION -->
+                        <div class="form-section-divider">
+                            <span><i class="fas fa-first-aid me-1"></i> Emergency Contact</span>
+                            <hr>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">EMERGENCY CONTACT PERSON</label>
+                                <input type="text" id="std-input-emg-name" class="form-control" placeholder="Relative name">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">EMERGENCY CONTACT NUMBER</label>
+                                <input type="text" id="std-input-emg-phone" class="form-control" placeholder="+92 300 0000000">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">RELATIONSHIP</label>
+                                <input type="text" id="std-input-emg-rel" class="form-control" placeholder="Father, Uncle, etc.">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="student-form" class="btn btn-primary px-4 shadow-sm">Save Student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         MODAL 2: ADD ACADEMIC HISTORY RECORD (SECTION 8 - VERY IMPORTANT)
+         ======================================================================= -->
+    <div class="modal fade" id="academic-history-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Academic Year Record: <span id="acad-hist-student-name" class="text-primary"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="academic-history-form">
+                        <input type="hidden" id="acad-hist-student-id">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ACADEMIC YEAR *</label>
+                                <select id="hist-input-year" class="form-select" required></select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">CLASS *</label>
+                                <input type="text" id="hist-input-class" class="form-control" placeholder="e.g. Grade 7" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">SECTION</label>
+                                <input type="text" id="hist-input-section" class="form-control" value="A">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ROLL NUMBER</label>
+                                <input type="text" id="hist-input-roll" class="form-control" placeholder="01" required>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">CLASS TEACHER NAME</label>
+                                <input type="text" id="hist-input-teacher" class="form-control" placeholder="Teacher name">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">TOTAL DAYS</label>
+                                <input type="number" id="hist-input-total-days" class="form-control" value="210">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">PRESENT DAYS</label>
+                                <input type="number" id="hist-input-present-days" class="form-control" value="198">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ABSENT DAYS</label>
+                                <input type="number" id="hist-input-absent-days" class="form-control" value="8">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">LEAVE DAYS</label>
+                                <input type="number" id="hist-input-leave-days" class="form-control" value="4">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">MARKS OBTAINED</label>
+                                <input type="number" id="hist-input-marks" class="form-control" placeholder="950">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">TOTAL MARKS</label>
+                                <input type="number" id="hist-input-total-marks" class="form-control" value="1100">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">GRADE</label>
+                                <input type="text" id="hist-input-grade" class="form-control" placeholder="A+ / A-1">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">CLASS POSITION</label>
+                                <input type="text" id="hist-input-position" class="form-control" placeholder="1st / 2nd / 3rd">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">RESULT</label>
+                                <select id="hist-input-result" class="form-select">
+                                    <option value="Pass">Pass</option>
+                                    <option value="Fail">Fail</option>
+                                    <option value="Withheld">Withheld</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">PROMOTION STATUS</label>
+                                <select id="hist-input-promo" class="form-select">
+                                    <option value="Promoted">Promoted</option>
+                                    <option value="Retained">Retained</option>
+                                    <option value="Current Year">Current Year</option>
+                                    <option value="Graduated">Graduated</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">TEACHER / HEAD REMARKS</label>
+                            <textarea id="hist-input-remarks" class="form-control" rows="2" placeholder="Student performance, character conduct, and academic notes..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="academic-history-form" class="btn btn-primary px-4 shadow-sm">Save Academic Record</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         MODAL 3: ADD / EDIT TEACHER (NO PHOTOS STRICTLY)
+         ======================================================================= -->
+    <div class="modal fade" id="teacher-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="teacher-modal-title">Add Teaching Faculty</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="teacher-form">
+                        <input type="hidden" id="teacher-form-id">
+                        <div class="form-section-divider">
+                            <span><i class="fas fa-user-tie me-1"></i> Faculty Information</span>
+                            <hr>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">TEACHER ID</label>
+                                <input type="text" id="tch-input-id" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">FULL NAME *</label>
+                                <input type="text" id="tch-input-fullname" class="form-control" placeholder="e.g. Tariq Mehmood" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">FATHER / HUSBAND NAME</label>
+                                <input type="text" id="tch-input-father" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">GENDER</label>
+                                <select id="tch-input-gender" class="form-select">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">DATE OF BIRTH</label>
+                                <input type="date" id="tch-input-dob" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">CNIC / NATIONAL ID</label>
+                                <input type="text" id="tch-input-cnic" class="form-control" placeholder="37405-0000000-1">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">HIGHEST QUALIFICATION</label>
+                                <input type="text" id="tch-input-qualification" class="form-control" placeholder="e.g. M.Phil Mathematics">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">PRIMARY SUBJECT *</label>
+                                <input type="text" id="tch-input-subject" class="form-control" placeholder="e.g. Mathematics" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ASSIGNED CLASS</label>
+                                <input type="text" id="tch-input-class" class="form-control" placeholder="e.g. Grade 9 (Section A)">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">JOINING DATE</label>
+                                <input type="date" id="tch-input-joining" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">CONTACT PHONE</label>
+                                <input type="text" id="tch-input-phone" class="form-control" placeholder="+92 300 0000000">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">OFFICIAL EMAIL</label>
+                                <input type="email" id="tch-input-email" class="form-control" placeholder="teacher@beaconvalley.edu.pk">
+                            </div>
+                            <div class="col-md-8">
+                                <label class="form-label fw-bold" style="font-size: 12px;">RESIDENTIAL ADDRESS</label>
+                                <input type="text" id="tch-input-address" class="form-control" placeholder="Street, Sector, City">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">BASIC SALARY</label>
+                                <input type="number" id="tch-input-salary" class="form-control" placeholder="85000">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ALLOWANCES</label>
+                                <input type="number" id="tch-input-allowances" class="form-control" placeholder="15000">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">EMPLOYMENT STATUS</label>
+                                <select id="tch-input-status" class="form-select">
+                                    <option value="Active">Active</option>
+                                    <option value="On Leave">On Leave</option>
+                                    <option value="Resigned">Resigned</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="teacher-form" class="btn btn-primary px-4 shadow-sm">Save Faculty</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         MODAL 4: STUDENT LEAVE APPLICATION
+         ======================================================================= -->
+    <div class="modal fade" id="student-leave-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Student Leave Application</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="student-leave-form">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">SELECT STUDENT *</label>
+                            <select id="std-leave-student-select" class="form-select" required></select>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">LEAVE FROM *</label>
+                                <input type="date" id="std-leave-from" class="form-control" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">LEAVE TO *</label>
+                                <input type="date" id="std-leave-to" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">NUMBER OF DAYS</label>
+                                <input type="number" id="std-leave-days" class="form-control" value="1" min="1">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">APPLICATION STATUS</label>
+                                <select id="std-leave-status" class="form-select">
+                                    <option value="Approved">Approved</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="hidden" id="std-leave-applied-date">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">REASON FOR LEAVE</label>
+                            <textarea id="std-leave-reason" class="form-control" rows="2" placeholder="State reason..." required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="student-leave-form" class="btn btn-primary px-3 shadow-sm">Submit Leave</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         MODAL 5: TEACHER LEAVE APPLICATION
+         ======================================================================= -->
+    <div class="modal fade" id="teacher-leave-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Faculty Leave Application</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="teacher-leave-form">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">SELECT FACULTY MEMBER *</label>
+                            <select id="tch-leave-teacher-select" class="form-select" required></select>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">LEAVE FROM *</label>
+                                <input type="date" id="tch-leave-from" class="form-control" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">LEAVE TO *</label>
+                                <input type="date" id="tch-leave-to" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">NUMBER OF DAYS</label>
+                                <input type="number" id="tch-leave-days" class="form-control" value="1" min="1">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">STATUS</label>
+                                <select id="tch-leave-status" class="form-select">
+                                    <option value="Approved">Approved</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="hidden" id="tch-leave-applied-date">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">OFFICIAL REASON</label>
+                            <textarea id="tch-leave-reason" class="form-control" rows="2" placeholder="Official reason..." required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="teacher-leave-form" class="btn btn-primary px-3 shadow-sm">Submit Leave</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         MODAL 6: RECORD / EDIT FEE PAYMENT
+         ======================================================================= -->
+    <div class="modal fade" id="fee-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fee-modal-title">Fee Voucher & Payment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="fee-form">
+                        <input type="hidden" id="fee-form-id">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">STUDENT *</label>
+                                <select id="fee-input-student" class="form-select" required></select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">FEE MONTH</label>
+                                <input type="text" id="fee-input-month" class="form-control" value="October 2026" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">DUE DATE</label>
+                                <input type="date" id="fee-input-due" class="form-control" value="2026-10-15">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">TUITION FEE</label>
+                                <input type="number" id="fee-input-tuition" class="form-control" value="15000">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">EXAM FEE</label>
+                                <input type="number" id="fee-input-exam" class="form-control" value="1500">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">LAB / SCIENCE FEE</label>
+                                <input type="number" id="fee-input-lab" class="form-control" value="500">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">OTHER / FINE</label>
+                                <input type="number" id="fee-input-other" class="form-control" value="0">
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-light rounded mb-3 d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="text-muted" style="font-size: 12px;">TOTAL VOUCHER AMOUNT:</span>
+                                <strong id="fee-modal-total-preview" class="fs-5 text-dark ms-2">Rs. 17,000</strong>
+                            </div>
+                            <div>
+                                <span class="text-muted" style="font-size: 12px;">BALANCE PENDING:</span>
+                                <strong id="fee-modal-pending-preview" class="fs-5 text-danger ms-2">Rs. 0</strong>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">AMOUNT PAID</label>
+                                <input type="number" id="fee-input-paid" class="form-control" value="17000">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">PAYMENT DATE</label>
+                                <input type="date" id="fee-input-date" class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">PAYMENT METHOD</label>
+                                <select id="fee-input-method" class="form-select">
+                                    <option value="Online Bank Transfer">Online Bank Transfer</option>
+                                    <option value="Cash">Cash at Counter</option>
+                                    <option value="Cheque">Bank Cheque</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="fee-form" class="btn btn-primary px-4 shadow-sm">Save Fee Record</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         MODAL 7: EDIT PAYROLL PARAMETERS
+         ======================================================================= -->
+    <div class="modal fade" id="payroll-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Salary Parameters: <span id="pay-teacher-name" class="text-primary"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="payroll-form">
+                        <input type="hidden" id="payroll-form-id">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">PAYMENT MONTH</label>
+                                <input type="text" id="pay-input-month" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">DISBURSEMENT STATUS</label>
+                                <select id="pay-input-status" class="form-select">
+                                    <option value="Paid">Paid</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold" style="font-size: 12px;">DISBURSEMENT DATE</label>
+                                <input type="date" id="pay-input-date" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">BASIC SALARY</label>
+                                <input type="number" id="pay-input-basic" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ALLOWANCES (+)</label>
+                                <input type="number" id="pay-input-allowances" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">BONUS (+)</label>
+                                <input type="number" id="pay-input-bonus" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold" style="font-size: 12px;">DEDUCTIONS (-)</label>
+                                <input type="number" id="pay-input-deductions" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-light rounded text-center">
+                            <div class="text-muted" style="font-size: 12px; font-weight: 700;">FORMULA: BASIC + ALLOWANCES + BONUS - DEDUCTIONS</div>
+                            <div class="fs-4 fw-bold text-primary mt-1" id="pay-modal-net-preview">Rs. 0</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="payroll-form" class="btn btn-primary px-4 shadow-sm">Save Payroll Entry</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         MODAL 8: ADD / EDIT CLASS
+         ======================================================================= -->
+    <div class="modal fade" id="class-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="class-modal-title">Class Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="class-form">
+                        <input type="hidden" id="class-form-id">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">CLASS NAME *</label>
+                            <input type="text" id="class-input-name" class="form-control" placeholder="e.g. Grade 11" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">CATEGORY</label>
+                            <select id="class-input-category" class="form-select">
+                                <option value="Pre-School">Pre-School</option>
+                                <option value="Primary">Primary</option>
+                                <option value="Middle">Middle</option>
+                                <option value="Secondary">Secondary</option>
+                                <option value="Higher Secondary">Higher Secondary</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">ASSIGN CLASS TEACHER</label>
+                            <select id="class-input-teacher" class="form-select"></select>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">ROOM NUMBER</label>
+                                <input type="text" id="class-input-room" class="form-control" placeholder="Room 405">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">STUDENT CAPACITY</label>
+                                <input type="number" id="class-input-capacity" class="form-control" value="35">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">SECTIONS (Comma Separated)</label>
+                            <input type="text" id="class-input-sections" class="form-control" value="A, B" placeholder="A, B, C">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="class-form" class="btn btn-primary px-3 shadow-sm">Save Class</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         MODAL 9: ADD / EDIT SUBJECT
+         ======================================================================= -->
+    <div class="modal fade" id="subject-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="subject-modal-title">Subject Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="subject-form">
+                        <input type="hidden" id="subject-form-id">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">SUBJECT TITLE *</label>
+                            <input type="text" id="subject-input-name" class="form-control" placeholder="e.g. Pakistan Studies" required>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">COURSE CODE</label>
+                                <input type="text" id="subject-input-code" class="form-control" placeholder="e.g. PST-01">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">COURSE TYPE</label>
+                                <select id="subject-input-type" class="form-select">
+                                    <option value="Core">Core</option>
+                                    <option value="Core (Practical)">Core (Practical)</option>
+                                    <option value="Elective">Elective</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">ASSIGNED CLASS LEVEL</label>
+                            <select id="subject-input-class" class="form-select"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">ASSIGN SUBJECT TEACHER</label>
+                            <select id="subject-input-teacher" class="form-select"></select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="subject-form" class="btn btn-primary px-3 shadow-sm">Save Subject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         MODAL 10: ADD ACADEMIC YEAR
+         ======================================================================= -->
+    <div class="modal fade" id="year-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Academic Session</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="year-form">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 12px;">ACADEMIC YEAR NAME *</label>
+                            <input type="text" id="year-input-name" class="form-control" placeholder="e.g. 2026-27" required>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">TERM START DATE</label>
+                                <input type="date" id="year-input-start" class="form-control" value="2026-08-01">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label fw-bold" style="font-size: 12px;">TERM END DATE</label>
+                                <input type="date" id="year-input-end" class="form-control" value="2027-06-30">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="year-form" class="btn btn-primary px-3 shadow-sm">Save Session</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         MODAL 11: GENERIC CONFIRMATION DIALOG
+         ======================================================================= -->
+    <div class="modal fade" id="generic-confirm-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center p-4">
+                    <div style="font-size: 44px; color: #ef4444; margin-bottom: 12px;">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h5 id="confirm-modal-title" class="fw-bold mb-2">Confirm Action</h5>
+                    <p id="confirm-modal-message" class="text-muted mb-4" style="font-size: 13px;">Are you sure you want to proceed?</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button type="button" class="btn btn-secondary btn-sm px-3" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" id="confirm-modal-action-btn" class="btn btn-danger btn-sm px-3 shadow-sm">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================================
+         SCRIPTS: Dependencies & Application Modules
+         ======================================================================= -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- App Modular Scripts in Dependency Order -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/students.js"></script>
+    <script src="assets/js/teachers.js"></script>
+    <script src="assets/js/attendance.js"></script>
+    <script src="assets/js/leaves.js"></script>
+    <script src="assets/js/payroll.js"></script>
+    <script src="assets/js/academic.js"></script>
+    <script src="assets/js/fees.js"></script>
+    <script src="assets/js/reports.js"></script>
+    <script src="assets/js/settings.js"></script>
+
+    <!-- Application Bootstrap Initializer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Feature Modules first so page navigation & DOM listeners are registered
+            StudentsModule.init();
+            TeachersModule.init();
+            AttendanceModule.init();
+            LeavesModule.init();
+            PayrollModule.init();
+            AcademicModule.init();
+            FeesModule.init();
+            ReportsModule.init();
+            SettingsModule.init();
+
+            // Initialize Core App Controller (handles route detection, direct URL landing, and renders default page)
+            App.init();
+        });
+    </script>
+</body>
+</html>
